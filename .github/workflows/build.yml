@@ -2,7 +2,10 @@ name: Build Windows exe
 
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+    paths:
+      - "BatchAnimationUploader.py"
+      - ".github/workflows/build.yml"
   workflow_dispatch:
 
 permissions:
@@ -18,20 +21,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
-        run: pip install pyinstaller requests
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
       - name: Build exe
-        run: pyinstaller --onefile --name BatchAnimationUploader upload_animations.py
+        run: pyinstaller --onefile --name BatchAnimationUploader BatchAnimationUploader.py
 
       - uses: actions/upload-artifact@v4
         with:
           name: BatchAnimationUploader-windows
           path: dist/BatchAnimationUploader.exe
 
-      - name: Attach exe to release
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v1.1.${{ github.run_number }}
+          name: v1.1.${{ github.run_number }}
           files: dist/BatchAnimationUploader.exe
           generate_release_notes: true
+          make_latest: true

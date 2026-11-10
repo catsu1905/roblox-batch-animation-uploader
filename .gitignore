@@ -3,7 +3,3 @@ __pycache__/
 build/
 dist/
 *.spec
-results.json
-results.txt
-results.lua
-.batch_animation_uploader.json
