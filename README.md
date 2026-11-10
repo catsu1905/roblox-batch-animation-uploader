@@ -59,6 +59,11 @@ Browser terbuka otomatis di `http://127.0.0.1:8765`. Tambahkan `--no-browser` ka
 
 Tiap kali kode di `main` berubah, GitHub Actions membangun `.exe` Windows dan menerbitkannya sebagai Release baru.
 
+## Kredit
+
+Dibuat oleh [catsu1905](https://github.com/catsu1905). Antarmuka web lokalnya dikembangkan dari script `RbxmAnimUploader.py` buatan catsu1905,
+dengan bantuan Claude (Anthropic) untuk penyempurnaan dan build otomatis.
+
 ## Lisensi
 
 MIT
